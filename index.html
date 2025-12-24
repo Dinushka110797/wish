@@ -16,6 +16,7 @@ body {
   color: #f2f2f2;
   font-family: "Georgia", serif;
   overflow-x: hidden;
+  touch-action: auto; /* ✅ allow native scrolling */
 }
 
 /* ===== SNOW ===== */
@@ -51,7 +52,7 @@ body {
 .container {
   max-width: 720px;
   margin: 0 auto;
-  padding: 60px 18px 100px;
+  padding: 60px 18px 120px;
   text-align: center;
 }
 
@@ -141,7 +142,7 @@ p {
   අද පමණක් නොව, සෑම විටම සාමය ප්‍රාර්ථනා කරමි.
   </p>
 
-  <p class="signature">— Sincerely,<br><strong>Dinushka L.W.Silva</strong></p>
+  <p class="signature">— Sincerely,<br><strong>Dinushka</strong></p>
 
 </div>
 
@@ -168,18 +169,22 @@ for(let i=0;i<40;i++){
   document.body.appendChild(s);
 }
 
-// Trail
-document.addEventListener("mousemove",trail);
-document.addEventListener("touchmove",e=>{
-  const t=e.touches[0];
-  trail({clientX:t.clientX,clientY:t.clientY});
+// Mouse trail (desktop only)
+document.addEventListener("mousemove", e => {
+  createTrail(e.clientX, e.clientY);
 });
 
-function trail(e){
+// Touch trail (PASSIVE – allows scroll)
+document.addEventListener("touchmove", e => {
+  const t = e.touches[0];
+  createTrail(t.clientX, t.clientY);
+}, { passive: true });
+
+function createTrail(x, y){
   const d=document.createElement("div");
   d.className="trail";
-  d.style.left=e.clientX-7+"px";
-  d.style.top=e.clientY-7+"px";
+  d.style.left=x-7+"px";
+  d.style.top=y-7+"px";
   document.body.appendChild(d);
   setTimeout(()=>d.remove(),1000);
 }

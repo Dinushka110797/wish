@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christmas Gift</title>
+
+<style>
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1a2a33, #05080b);
+  color: #f2f2f2;
+  font-family: "Georgia", serif;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* ===== SNOW ===== */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 1em;
+  opacity: 0.6;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+
+/* ===== STARS ===== */
+.star {
+  position: fixed;
+  color: white;
+  opacity: 0.3;
+  font-size: 1px;
+  animation: twinkle infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* ===== CONTENT ===== */
+.wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.container {
+  max-width: 600px;
+  padding: 30px;
+  opacity: 0;
+  animation: fadeIn 3s ease forwards;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 18px 0;
+}
+
+/* ===== GLOWING LIGHT ===== */
+.glow {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #ffd27d, transparent 70%);
+  margin: 0 auto 30px;
+  animation: pulse 4s ease-in-out infinite, sparkle 2s infinite;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+
+@keyframes sparkle {
+  0%, 100% { box-shadow: 0 0 8px 3px rgba(255, 210, 125,0.5); }
+  50% { box-shadow: 0 0 20px 10px rgba(255, 210, 125,0.8); }
+}
+
+/* ===== TRAIL ===== */
+.trail {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: rgba(255, 255, 200, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: lighten;
+  filter: blur(2px);
+  z-index: 3;
+  animation: fadeTrail 1s forwards;
+}
+
+@keyframes fadeTrail {
+  to { opacity: 0; transform: scale(0); }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn { to { opacity: 1; } }
+
+.signature {
+  margin-top: 30px;
+  font-style: italic;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <div class="container">
+    <div class="glow" id="glowLight"></div>
+
+    <p><strong>Breathe.</strong></p>
+
+    <p>Christmas is not about noise.</p>
+
+    <p>It’s about quiet moments,<br>unspoken hopes,<br>and peace that stays.</p>
+
+    <p>May all your hopes<br>and untold wishes come true.</p>
+
+    <p>Wishing peace for you,<br>your family,<br>and your loved ones.</p>
+
+    <p>Merry Christmas 🎄<br>Wishing you peace.</p>
+
+    <p class="signature">— Sincerely,<br><strong>Dinushka</strong></p>
+  </div>
+</div>
+
+<!-- Snow Generator -->
+<script>
+// Generate snow
+for (let i = 0; i < 40; i++) {
+  let snow = document.createElement("div");
+  snow.className = "snowflake";
+  snow.innerHTML = "❄";
+  snow.style.left = Math.random() * 100 + "vw";
+  snow.style.animationDuration = (5 + Math.random() * 10) + "s";
+  snow.style.fontSize = (10 + Math.random() * 20) + "px";
+  document.body.appendChild(snow);
+}
+
+// Generate stars
+for (let i = 0; i < 50; i++) {
+  let star = document.createElement("div");
+  star.className = "star";
+  star.innerHTML = "✦";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.fontSize = (2 + Math.random() * 4) + "px";
+  star.style.animationDuration = (3 + Math.random() * 4) + "s";
+  document.body.appendChild(star);
+}
+
+// Mouse / touch trail
+document.addEventListener('mousemove', createTrail);
+document.addEventListener('touchmove', e => {
+  const touch = e.touches[0];
+  createTrail({clientX: touch.clientX, clientY: touch.clientY});
+});
+
+function createTrail(e) {
+  const trail = document.createElement('div');
+  trail.className = 'trail';
+  trail.style.left = (e.clientX - 7) + 'px';
+  trail.style.top = (e.clientY - 7) + 'px';
+  document.body.appendChild(trail);
+  setTimeout(() => trail.remove(), 1000);
+}
+
+// Hidden surprise on glow click
+const glow = document.getElementById('glowLight');
+glow.addEventListener('click', () => {
+  const surprise = document.createElement('div');
+  surprise.innerHTML = "✨🎁✨";
+  surprise.style.position = 'absolute';
+  surprise.style.left = '50%';
+  surprise.style.top = '50%';
+  surprise.style.transform = 'translate(-50%, -50%)';
+  surprise.style.fontSize = '3rem';
+  surprise.style.opacity = 0;
+  surprise.style.animation = 'surpriseAnim 1s forwards';
+  document.body.appendChild(surprise);
+
+  // Play soft chime
+  const chime = new Audio('https://cdn.pixabay.com/audio/2022/12/22/audio_0c8c8a4c52.mp3');
+  chime.volume = 0.3;
+  chime.play();
+
+  setTimeout(() => surprise.remove(), 1500);
+});
+
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes surpriseAnim {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}`;
+document.head.appendChild(style);
+</script>
+
+<!-- Background Christmas Sound -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/12/22/audio_0c8c8a4c52.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>

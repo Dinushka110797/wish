@@ -6,13 +6,15 @@
 <title>Christmas Gift</title>
 
 <style>
-/* ===== BASE ===== */
-body {
+html, body {
   margin: 0;
+  padding: 0;
+}
+
+body {
   background: radial-gradient(circle at top, #1a2a33, #05080b);
   color: #f2f2f2;
   font-family: "Georgia", serif;
-  overflow-y: auto;          /* ✅ ENABLE SCROLL */
   overflow-x: hidden;
 }
 
@@ -21,10 +23,9 @@ body {
   position: fixed;
   top: -10px;
   color: white;
-  font-size: 1em;
   opacity: 0.6;
-  animation: fall linear infinite;
   pointer-events: none;
+  animation: fall linear infinite;
 }
 
 @keyframes fall {
@@ -36,86 +37,70 @@ body {
   position: fixed;
   color: white;
   opacity: 0.3;
-  font-size: 1px;
+  font-size: 2px;
   animation: twinkle infinite;
   pointer-events: none;
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.2; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.5); }
+  0%,100% { opacity: .3; }
+  50% { opacity: 1; }
 }
 
 /* ===== CONTENT ===== */
-.wrapper {
-  min-height: 100vh;         /* ✅ ALLOW CONTENT TO GROW */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;   /* ✅ START FROM TOP */
-  text-align: center;
-  padding: 40px 15px;
-  position: relative;
-  z-index: 2;
-}
-
 .container {
-  max-width: 700px;
-  width: 100%;
-  padding: 30px;
-  opacity: 0;
-  animation: fadeIn 3s ease forwards;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 18px 100px;
+  text-align: center;
 }
 
+/* ===== TEXT ===== */
 p {
   font-size: 1.1rem;
   line-height: 1.9;
   margin: 22px 0;
 }
 
-/* ===== GLOWING LIGHT ===== */
+/* ===== GLOW ===== */
 .glow {
   width: 120px;
   height: 120px;
-  background: radial-gradient(circle, #ffd27d, transparent 70%);
   margin: 0 auto 40px;
-  animation: pulse 4s ease-in-out infinite, sparkle 2s infinite;
   border-radius: 50%;
-  cursor: pointer;
+  background: radial-gradient(circle, #ffd27d, transparent 70%);
+  animation: pulse 4s infinite, sparkle 2s infinite;
 }
 
 @keyframes pulse {
-  0% { opacity: 0.4; }
-  50% { opacity: 0.85; }
-  100% { opacity: 0.4; }
+  0%,100% { opacity: .4; }
+  50% { opacity: .85; }
 }
 
 @keyframes sparkle {
-  0%, 100% { box-shadow: 0 0 10px 4px rgba(255,210,125,0.5); }
-  50% { box-shadow: 0 0 25px 12px rgba(255,210,125,0.9); }
+  0%,100% { box-shadow: 0 0 10px rgba(255,210,125,.5); }
+  50% { box-shadow: 0 0 25px rgba(255,210,125,.9); }
 }
 
 /* ===== TRAIL ===== */
 .trail {
   position: fixed;
-  width: 15px;
-  height: 15px;
-  background: rgba(255, 255, 200, 0.5);
+  width: 14px;
+  height: 14px;
+  background: rgba(255,255,200,.5);
   border-radius: 50%;
   pointer-events: none;
   filter: blur(2px);
-  animation: fadeTrail 1s forwards;
-  z-index: 5;
+  animation: fade 1s forwards;
+  z-index: 10;
 }
 
-@keyframes fadeTrail {
+@keyframes fade {
   to { opacity: 0; transform: scale(0); }
 }
 
-/* ===== ANIMATIONS ===== */
-@keyframes fadeIn { to { opacity: 1; } }
-
 .signature {
-  margin-top: 40px;
+  margin-top: 50px;
   font-style: italic;
 }
 </style>
@@ -123,108 +108,85 @@ p {
 
 <body>
 
-<div class="wrapper">
-  <div class="container">
+<div class="container">
 
-    <div class="glow" id="glowLight"></div>
+  <div class="glow" id="glow"></div>
 
-    <p><strong>Breathe.</strong></p>
+  <p><strong>Breathe.</strong></p>
+  <p>Christmas is not about noise.</p>
+  <p>It’s about quiet moments,<br>unspoken hopes,<br>and peace that stays.</p>
+  <p>May all your hopes<br>and untold wishes come true.</p>
+  <p>Wishing peace for you,<br>your family,<br>and your loved ones.</p>
+  <p>Merry Christmas 🎄<br>Wishing you peace.</p>
 
-    <p>Christmas is not about noise.</p>
+  <p>
+  මේ නත්තල නිහඬව පැමිණෙන විට,<br><br>
 
-    <p>It’s about quiet moments,<br>unspoken hopes,<br>and peace that stays.</p>
+  ඔබ සතුව ඇති දේ සඳහා, ඔබ ඉගෙන ගත් දේ සඳහා,<br>
+  සහ ඔබව හැඩගස්වා ඇති අභියෝග සඳහා පවා<br>
+  කෘතඥතාව ඔබේ හදවතට ඇතුළු වේවා.<br><br>
 
-    <p>May all your hopes<br>and untold wishes come true.</p>
+  ප්‍රේමය ඔබව වට කර ගනීවා —<br>
+  නොකී වචන වලින්,<br>
+  නිහඬ සහයෝගයෙන්,<br>
+  සහ සැබවින්ම වැදගත් පුද්ගලයින් තුළ.<br><br>
 
-    <p>Wishing peace for you,<br>your family,<br>and your loved ones.</p>
+  සමාව ඔබට සාමය ගෙන එනු ඇත —<br>
+  බර දේ අත්හැරීම,<br>
+  සන්සුන්තාවය, සුවය සහ ආලෝකය සඳහා ඉඩක් ලබා දීම.<br><br>
 
-    <p>Merry Christmas 🎄<br>Wishing you peace.</p>
+  ඔබට,<br>
+  ඔබේ පවුලේ අයට සහ<br>
+  ඔබේ ආදරණීයයන්ට —<br>
+  අද පමණක් නොව, සෑම විටම සාමය ප්‍රාර්ථනා කරමි.
+  </p>
 
-    <p>
-    මේ නත්තල නිහඬව පැමිණෙන විට,<br>
-    මම ඔබට නිශ්චලතාවයේ, උණුසුමේ සහ පැහැදිලිකමේ මොහොතක් ප්‍රාර්ථනා කරමි.<br><br>
+  <p class="signature">— Sincerely,<br><strong>Dinushka</strong></p>
 
-    ඔබ සතුව ඇති දේ සඳහා, ඔබ ඉගෙන ගත් දේ සඳහා,<br>
-    සහ ඔබව හැඩගස්වා ඇති අභියෝග සඳහා පවා<br>
-    කෘතඥතාව ඔබේ හදවතට ඇතුළු වේවා.<br><br>
-
-    ප්‍රේමය ඔබව වට කර ගනීවා —<br>
-    නොකී වචන වලින්,<br>
-    නිහඬ සහයෝගයෙන්,<br>
-    සහ සැබවින්ම වැදගත් පුද්ගලයින් තුළ.<br><br>
-
-    සමාව ඔබට සාමය ගෙන එනු ඇත —<br>
-    බර දේ අත්හැරීම,<br>
-    සන්සුන්තාවය, සුවය සහ ආලෝකය සඳහා ඉඩක් ලබා දීම.<br><br>
-
-    ඔබට,<br>
-    ඔබේ පවුලේ අයට සහ<br>
-    ඔබේ ආදරණීයයන්ට —<br>
-    අද පමණක් නොව, සෑම විටම සාමය ප්‍රාර්ථනා කරමි.
-    </p>
-
-    <p class="signature">— Sincerely,<br><strong>Dinushka</strong></p>
-
-  </div>
 </div>
 
 <script>
 // Snow
-for (let i = 0; i < 40; i++) {
-  const snow = document.createElement("div");
-  snow.className = "snowflake";
-  snow.innerHTML = "❄";
-  snow.style.left = Math.random() * 100 + "vw";
-  snow.style.animationDuration = (6 + Math.random() * 8) + "s";
-  snow.style.fontSize = (10 + Math.random() * 20) + "px";
-  document.body.appendChild(snow);
+for(let i=0;i<40;i++){
+  const s=document.createElement("div");
+  s.className="snowflake";
+  s.innerHTML="❄";
+  s.style.left=Math.random()*100+"vw";
+  s.style.fontSize=10+Math.random()*20+"px";
+  s.style.animationDuration=6+Math.random()*8+"s";
+  document.body.appendChild(s);
 }
 
 // Stars
-for (let i = 0; i < 50; i++) {
-  const star = document.createElement("div");
-  star.className = "star";
-  star.innerHTML = "✦";
-  star.style.left = Math.random() * 100 + "vw";
-  star.style.top = Math.random() * 100 + "vh";
-  star.style.fontSize = (2 + Math.random() * 4) + "px";
-  star.style.animationDuration = (3 + Math.random() * 4) + "s";
-  document.body.appendChild(star);
+for(let i=0;i<40;i++){
+  const s=document.createElement("div");
+  s.className="star";
+  s.innerHTML="✦";
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*100+"vh";
+  s.style.animationDuration=3+Math.random()*4+"s";
+  document.body.appendChild(s);
 }
 
 // Trail
-document.addEventListener("mousemove", createTrail);
-document.addEventListener("touchmove", e => {
-  const t = e.touches[0];
-  createTrail({ clientX: t.clientX, clientY: t.clientY });
+document.addEventListener("mousemove",trail);
+document.addEventListener("touchmove",e=>{
+  const t=e.touches[0];
+  trail({clientX:t.clientX,clientY:t.clientY});
 });
 
-function createTrail(e) {
-  const trail = document.createElement("div");
-  trail.className = "trail";
-  trail.style.left = e.clientX - 7 + "px";
-  trail.style.top = e.clientY - 7 + "px";
-  document.body.appendChild(trail);
-  setTimeout(() => trail.remove(), 1000);
+function trail(e){
+  const d=document.createElement("div");
+  d.className="trail";
+  d.style.left=e.clientX-7+"px";
+  d.style.top=e.clientY-7+"px";
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),1000);
 }
-
-// Hidden surprise
-document.getElementById("glowLight").addEventListener("click", () => {
-  const s = document.createElement("div");
-  s.innerHTML = "✨🎄✨";
-  s.style.position = "fixed";
-  s.style.left = "50%";
-  s.style.top = "50%";
-  s.style.transform = "translate(-50%, -50%)";
-  s.style.fontSize = "3rem";
-  s.style.animation = "fadeTrail 1.5s forwards";
-  document.body.appendChild(s);
-  setTimeout(() => s.remove(), 1500);
-});
 </script>
 
 <audio autoplay loop>
-  <source src="https://cdn.pixabay.com/audio/2022/12/22/audio_0c8c8a4c52.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2022/12/22/audio_0c8c8a4c52.mp3">
 </audio>
 
 </body>
